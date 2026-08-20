@@ -1,12 +1,5 @@
 // XBot V3 extension for OhStem App - board: ORC Control Hub
-//
 // Chi dung var o pham vi ngoai cung de file nap lai nhieu lan van khong loi.
-// Hai dong log duoi day de kiem tra app co chay file nay khong:
-//   thay ca 2 dong  -> file chay xong, khoi da dang ky
-//   chi thay dong 1 -> file chet giua chung, xem loi ngay sau dong log
-//   khong thay dong nao -> app khong nap file nay
-
-console.log('[XBot V3] definition.js bat dau nap');
 
 if (typeof Blockly.Python === 'undefined') {
   Blockly.Python = {};
@@ -986,10 +979,3 @@ Blockly.Python['xbot_v3_auto_mode'] = function (block) {
   Blockly.Python.definitions_['import_xbot_v3'] = 'from xbot_v3 import *';
   return 'xbot.auto_mode(' + block.getFieldValue('enabled') + ')\n';
 };
-
-console.log(
-  '[XBot V3] definition.js nap xong, so khoi da dang ky =',
-  Object.keys(Blockly.Blocks).filter(function (k) {
-    return k.indexOf('xbot_v3_') === 0;
-  }).length
-);

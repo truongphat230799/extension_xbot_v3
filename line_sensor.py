@@ -123,7 +123,8 @@ class LineSensorI2C(LineSensor):
     def read(self, index=None):
         # 0 white, 1 black
         if self.pcf == None:
-            return 0
+            # phai giu dung kieu du lieu, check() se lam now[1] tren ket qua nay
+            return 0 if index != None else (0, 0, 0, 0)
 
         if index == None:
             return (self.pcf.pin(0), self.pcf.pin(1), self.pcf.pin(2), self.pcf.pin(3))

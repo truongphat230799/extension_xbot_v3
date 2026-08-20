@@ -43,12 +43,13 @@ btn_boot = aButton(BOOT_PIN)
 def show_mode():
     # den RGB tren mach Control Hub bao che do dang chay
     xbot.show_rgb_led(0, hex_to_rgb(MODE_COLORS[mode]))
-    print('XBot V3 mode:', MODE_NAMES[mode])
+    print('XBot V3 mode', mode + 1, '/', len(MODE_NAMES), '-', MODE_NAMES[mode])
 
 
 async def on_boot_pressed():
     global mode, mode_changed
-    mode = (mode + 1) % 4
+    # vong tuan hoan: 1 -> 2 -> 3 -> 4 -> 1
+    mode = (mode + 1) % len(MODE_NAMES)
     mode_changed = True
     # che do teleop nhan lenh tu tay cam, cac che do con lai tu chay
     xbot.auto_mode(mode != MODE_TELEOP)
@@ -97,6 +98,8 @@ async def run_follow_object():
 
 
 async def run_follow_line():
+    # follow_line() chi tinh toan roi dat toc do banh xe, khong tu cho.
+    # Phai goi lien tuc trong vong lap thi robot moi bam vach duoc.
     await xbot.follow_line()
 
 
@@ -135,14 +138,20 @@ async def main():
             mode_changed = False
 
         if mode == MODE_TELEOP:
-            # run_teleop() dang chay nen o day chi can cho
-            await asleep_ms(100)
+            # run_teleop() chay o task rieng nen o day khong phai lam gi
+            pass
         elif mode == MODE_AVOID_OBSTACLE:
             await run_avoid_obstacle()
         elif mode == MODE_FOLLOW_OBJECT:
             await run_follow_object()
         elif mode == MODE_FOLLOW_LINE:
             await run_follow_line()
+
+        # Luon nhuong CPU o cuoi moi vong lap.
+        # Bat buoc phai co: follow_line() ben trong khong co await nao, neu
+        # vong lap khong nhuong thi task nut BOOT se khong duoc chay va robot
+        # ket lai o che do do line, khong quay ve che do 1 duoc.
+        await asleep_ms(10)
 
 
 def deinit():
