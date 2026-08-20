@@ -31,6 +31,12 @@ MODE_FOLLOW_LINE = const(3)
 MODE_COLORS = ('#ff0000', '#0000ff', '#ff00ff', '#ffffff')
 MODE_NAMES = ('Teleop', 'Avoid obstacle', 'Follow object', 'Follow line')
 
+# Toc do rieng cho tung che do, 0 den 100. Chinh o day neu robot chay nhanh qua.
+MODE_SPEEDS = (70, 55, 70, 70)
+
+# Toc do luc bat dau chay, robot tang dan tu day len toc do cua che do
+MIN_SPEED = 40
+
 # khoang cach coi la co vat can, cm
 OBSTACLE_DISTANCE = 15
 
@@ -40,10 +46,13 @@ mode_changed = True
 btn_boot = aButton(BOOT_PIN)
 
 
-def show_mode():
+def apply_mode():
+    # dat toc do rieng cua che do
+    xbot.speed(MODE_SPEEDS[mode], min_speed=MIN_SPEED)
     # den RGB tren mach Control Hub bao che do dang chay
     xbot.show_rgb_led(0, hex_to_rgb(MODE_COLORS[mode]))
-    print('XBot V3 mode', mode + 1, '/', len(MODE_NAMES), '-', MODE_NAMES[mode])
+    print('XBot V3 mode', mode + 1, '/', len(MODE_NAMES),
+          '-', MODE_NAMES[mode], '- toc do', MODE_SPEEDS[mode])
 
 
 async def on_boot_pressed():
@@ -107,7 +116,6 @@ async def setup():
     # cam vang trong luc khoi dong va hieu chinh cam bien goc
     xbot.show_rgb_led(0, hex_to_rgb('#ffa500'))
 
-    xbot.speed(70, min_speed=40)
     xbot.pid(Kp=8, Ki=0.15, Kd=0)
     await xbot.calibrate_gyro(200)
 
@@ -134,7 +142,7 @@ async def main():
 
     while True:
         if mode_changed:
-            show_mode()
+            apply_mode()
             mode_changed = False
 
         if mode == MODE_TELEOP:
