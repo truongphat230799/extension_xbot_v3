@@ -1,0 +1,174 @@
+<xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
+  <category name="XBOT V3" colour="#e8590c" icon="robot">
+
+    <label text="Di chuyển" web-class="blockLabelStyle"></label>
+
+    <block type="xbot_v3_move">
+      <value name="speed">
+        <shadow type="math_number">
+          <field name="NUM">70</field>
+        </shadow>
+      </value>
+    </block>
+
+    <block type="xbot_v3_move_for">
+      <value name="amount">
+        <shadow type="math_number">
+          <field name="NUM">2</field>
+        </shadow>
+      </value>
+    </block>
+
+    <block type="xbot_v3_move_motor">
+      <value name="left_speed">
+        <shadow type="math_number">
+          <field name="NUM">50</field>
+        </shadow>
+      </value>
+      <value name="right_speed">
+        <shadow type="math_number">
+          <field name="NUM">50</field>
+        </shadow>
+      </value>
+    </block>
+
+    <block type="xbot_v3_stop"/>
+
+    <block type="xbot_v3_set_speed">
+      <value name="speed">
+        <shadow type="math_number">
+          <field name="NUM">70</field>
+        </shadow>
+      </value>
+    </block>
+
+    <block type="xbot_v3_speed_ratio">
+      <value name="left">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+      <value name="right">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+    </block>
+
+    <sep gap="30"></sep>
+    <label text="Servo" web-class="blockLabelStyle"></label>
+
+    <block type="xbot_v3_servo_angle">
+      <value name="angle">
+        <shadow type="math_number">
+          <field name="NUM">90</field>
+        </shadow>
+      </value>
+    </block>
+
+    <block type="xbot_v3_servo_spin">
+      <value name="speed">
+        <shadow type="math_number">
+          <field name="NUM">0</field>
+        </shadow>
+      </value>
+    </block>
+
+    <sep gap="30"></sep>
+    <label text="Cảm biến" web-class="blockLabelStyle"></label>
+
+    <block type="xbot_v3_line_read_all"/>
+    <block type="xbot_v3_line_read_single"/>
+
+    <block type="xbot_v3_ultrasonic_read"/>
+    <block type="xbot_v3_ultrasonic_detect">
+      <value name="distance">
+        <shadow type="math_number">
+          <field name="NUM">15</field>
+        </shadow>
+      </value>
+    </block>
+
+    <block type="xbot_v3_calibrate_gyro"/>
+    <block type="xbot_v3_angle"/>
+    <block type="xbot_v3_battery"/>
+
+    <sep gap="30"></sep>
+    <label text="Dò line" web-class="blockLabelStyle"></label>
+
+    <block type="xbot_v3_follow_line"/>
+    <block type="xbot_v3_follow_line_until"/>
+    <block type="xbot_v3_follow_line_by_time">
+      <value name="time">
+        <shadow type="math_number">
+          <field name="NUM">3</field>
+        </shadow>
+      </value>
+    </block>
+
+    <sep gap="30"></sep>
+    <label text="Đèn LED RGB" web-class="blockLabelStyle"></label>
+
+    <block type="xbot_v3_rgb_array">
+      <value name="color1">
+        <shadow type="colour_picker">
+          <field name="COLOUR">#000000</field>
+        </shadow>
+      </value>
+      <value name="color2">
+        <shadow type="colour_picker">
+          <field name="COLOUR">#000000</field>
+        </shadow>
+      </value>
+      <value name="color3">
+        <shadow type="colour_picker">
+          <field name="COLOUR">#000000</field>
+        </shadow>
+      </value>
+      <value name="color4">
+        <shadow type="colour_picker">
+          <field name="COLOUR">#000000</field>
+        </shadow>
+      </value>
+      <value name="color5">
+        <shadow type="colour_picker">
+          <field name="COLOUR">#000000</field>
+        </shadow>
+      </value>
+      <value name="color6">
+        <shadow type="colour_picker">
+          <field name="COLOUR">#000000</field>
+        </shadow>
+      </value>
+    </block>
+
+    <block type="xbot_v3_rgb_single">
+      <value name="index">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+      <value name="color">
+        <shadow type="colour_picker">
+          <field name="COLOUR">#ff0000</field>
+        </shadow>
+      </value>
+    </block>
+
+    <block type="xbot_v3_rgb_all">
+      <value name="color">
+        <shadow type="colour_picker">
+          <field name="COLOUR">#ff0000</field>
+        </shadow>
+      </value>
+    </block>
+
+    <sep gap="30"></sep>
+    <label text="Điều khiển từ xa" web-class="blockLabelStyle"></label>
+
+    <block type="xbot_v3_start_teleop"/>
+    <block type="xbot_v3_gamepad_read_button"/>
+    <block type="xbot_v3_auto_mode"/>
+
+  </category>
+</xml>

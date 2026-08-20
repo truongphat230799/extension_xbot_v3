@@ -1,0 +1,32 @@
+{
+    "name": "XBOT V3",
+    "description": "Thư viện cho robot XBot V3 chạy trên mạch ORC Control Hub",
+    "libs": [
+        "constants.py",
+        "pcf8574.py",
+        "vector3d.py",
+        "pid.py",
+        "mpu6050.py",
+        "angle_sensor.py",
+        "line_sensor.py",
+        "mdv1.py",
+        "mdv2.py",
+        "motor.py",
+        "servo.py",
+        "ps4_receiver.py",
+        "gamepad.py",
+        "drivebase.py",
+        "xbot_ultrasonic.py",
+        "xbot_v3.py",
+        "main.py"
+    ],
+    "blocks": [
+        "definition.js"
+    ],
+    "toolbox": "toolbox.xml",
+    "languages": {
+        "en": "languages/en.js",
+        "vi": "languages/vi.js"
+    },
+    "poster": "poster.png"
+}
