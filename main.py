@@ -98,7 +98,7 @@ async def run_follow_object():
         xbot.backward()
     elif distance < 25:
         xbot.stop()
-    elif distance < 60:
+    elif distance < 40:
         xbot.forward()
     else:
         xbot.stop()
