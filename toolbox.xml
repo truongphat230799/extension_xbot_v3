@@ -78,7 +78,9 @@
     <label text="Cảm biến" web-class="blockLabelStyle"></label>
 
     <block type="xbot_v3_line_read_all"/>
+    <block type="xbot_v3_line5_read_all"/>
     <block type="xbot_v3_line_read_single"/>
+    <block type="xbot_v3_line_position"/>
 
     <block type="xbot_v3_ultrasonic_read"/>
     <block type="xbot_v3_ultrasonic_detect">

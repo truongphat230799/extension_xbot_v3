@@ -32,10 +32,16 @@ Blockly.Msg.XBOT_V3_SERVO_SPIN_MESSAGE0 = "%1 quay servo 360 %2 với tốc đ�
 Blockly.Msg.XBOT_V3_SERVO_SPIN_TOOLTIP = "Dùng cho servo quay liên tục 360 độ"
 
 Blockly.Msg.XBOT_V3_LINE_READ_ALL_MESSAGE0 = "%1 cảm biến line phát hiện S1 %2 S2 %3 S3 %4 S4 %5"
-Blockly.Msg.XBOT_V3_LINE_READ_ALL_TOOLTIP = "So sánh trạng thái cả 4 mắt dò line cùng lúc"
+Blockly.Msg.XBOT_V3_LINE_READ_ALL_TOOLTIP = "So sánh trạng thái cả 4 mắt dò line cùng lúc. Dùng cho cảm biến 4 mắt"
+
+Blockly.Msg.XBOT_V3_LINE5_READ_ALL_MESSAGE0 = "%1 cảm biến line 5 mắt phát hiện S1 %2 S2 %3 S3 %4 S4 %5 S5 %6"
+Blockly.Msg.XBOT_V3_LINE5_READ_ALL_TOOLTIP = "So sánh trạng thái cả 5 mắt dò line cùng lúc. Dùng cho cảm biến 5 mắt"
 
 Blockly.Msg.XBOT_V3_LINE_READ_SINGLE_MESSAGE0 = "%1 cảm biến line đọc giá trị %2"
-Blockly.Msg.XBOT_V3_LINE_READ_SINGLE_TOOLTIP = "Trả về 1 khi thấy vạch đen, 0 khi thấy nền trắng"
+Blockly.Msg.XBOT_V3_LINE_READ_SINGLE_TOOLTIP = "Trả về 1 khi thấy vạch đen, 0 khi thấy nền trắng. S5 chỉ có trên cảm biến 5 mắt"
+
+Blockly.Msg.XBOT_V3_LINE_POSITION_MESSAGE0 = "%1 độ lệch vạch line"
+Blockly.Msg.XBOT_V3_LINE_POSITION_TOOLTIP = "Vạch line lệch bao nhiêu so với giữa cảm biến: -100 là hết về bên trái, 0 là đúng giữa, 100 là hết về bên phải. Trả về 0 khi không mắt nào thấy vạch"
 
 Blockly.Msg.XBOT_V3_ULTRASONIC_READ_MESSAGE0 = "%1 đọc cảm biến khoảng cách (cm)"
 Blockly.Msg.XBOT_V3_ULTRASONIC_READ_TOOLTIP = "Trả về 999 nếu không đo được"

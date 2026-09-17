@@ -32,10 +32,16 @@ Blockly.Msg.XBOT_V3_SERVO_SPIN_MESSAGE0 = "%1 spin servo 360 %2 speed %3 (-100 t
 Blockly.Msg.XBOT_V3_SERVO_SPIN_TOOLTIP = "For continuous rotation servos"
 
 Blockly.Msg.XBOT_V3_LINE_READ_ALL_MESSAGE0 = "%1 line sensor detects S1 %2 S2 %3 S3 %4 S4 %5"
-Blockly.Msg.XBOT_V3_LINE_READ_ALL_TOOLTIP = "Compare all four line sensors at once"
+Blockly.Msg.XBOT_V3_LINE_READ_ALL_TOOLTIP = "Compare all four line sensors at once. For the 4-eye sensor"
+
+Blockly.Msg.XBOT_V3_LINE5_READ_ALL_MESSAGE0 = "%1 5-eye line sensor detects S1 %2 S2 %3 S3 %4 S4 %5 S5 %6"
+Blockly.Msg.XBOT_V3_LINE5_READ_ALL_TOOLTIP = "Compare all five line sensors at once. For the 5-eye sensor"
 
 Blockly.Msg.XBOT_V3_LINE_READ_SINGLE_MESSAGE0 = "%1 line sensor read %2"
-Blockly.Msg.XBOT_V3_LINE_READ_SINGLE_TOOLTIP = "Returns 1 on a black line, 0 on a white surface"
+Blockly.Msg.XBOT_V3_LINE_READ_SINGLE_TOOLTIP = "Returns 1 on a black line, 0 on a white surface. S5 only exists on the 5-eye sensor"
+
+Blockly.Msg.XBOT_V3_LINE_POSITION_MESSAGE0 = "%1 line offset"
+Blockly.Msg.XBOT_V3_LINE_POSITION_TOOLTIP = "How far the line is from the middle of the sensor: -100 fully left, 0 centred, 100 fully right. Returns 0 when no sensor sees the line"
 
 Blockly.Msg.XBOT_V3_ULTRASONIC_READ_MESSAGE0 = "%1 read distance sensor (cm)"
 Blockly.Msg.XBOT_V3_ULTRASONIC_READ_TOOLTIP = "Returns 999 when nothing is measured"

@@ -43,7 +43,7 @@ from mdv2 import MotorDriverV2
 from motor import DCMotor
 from drivebase import DriveBase
 from servo import Servo
-from line_sensor import LineSensorI2C
+from line_sensor import LineSensorI2C, LineSensor5P_I2C
 from mpu6050 import MPU6050
 from angle_sensor import AngleSensor
 from gamepad import Gamepad
@@ -74,8 +74,10 @@ except NameError:
     XBOT_ULTRASONIC_TRIG = 3
     XBOT_ULTRASONIC_ECHO = 4
 
-# Cam bien do line I2C
-XBOT_LINE_ADDRESS = 0x23
+# Cam bien do line I2C. De None de thu vien tu nhan loai cam bien dang cam:
+# ban 4 mat o dia chi 0x23, hoac ban 5 mat o dia chi 0x24.
+# Chi dat dia chi cu the neu ban muon ep dung mot loai.
+XBOT_LINE_ADDRESS = None
 
 # Den RGB. De None de dung den RGB co san tren mach Control Hub.
 # Chi doi thanh so chan neu ban gan them dai led RGB ben ngoai.
@@ -401,11 +403,18 @@ class XBotV3:
     # ==================================================================
 
     '''
-        Doc trang thai 4 mat do line.
+        So mat do cua cam bien line dang cam: 4 hoac 5.
+    '''
+    def line_sensor_count(self):
+        return self.line_sensor.n_sensors
+
+    '''
+        Doc trang thai cac mat do line, tinh tu trai sang phai.
 
         Parameters:
-            index (int) - bo trong de doc ca 4 mat dang (s1, s2, s3, s4),
-                          hoac 1 den 4 de doc rieng tung mat
+            index (int) - bo trong de doc het cac mat dang (s1, s2, ...),
+                          hoac 1 den 4 (ban 4 mat) / 1 den 5 (ban 5 mat)
+                          de doc rieng tung mat
         Gia tri 1 la thay vach den, 0 la thay nen trang.
     '''
     def read_line_sensors(self, index=None):
@@ -414,12 +423,54 @@ class XBotV3:
         return self.line_sensor.read(int(index) - 1)
 
     '''
+        Vach line dang nam lech bao nhieu so voi giua cam bien, tu -100
+        (het ve ben trai) den 100 (het ve ben phai), 0 la dang giua.
+        Tra ve 0 khi khong mat nao thay vach.
+
+        Dung de tu viet vong lap bam line theo kieu ti le, vi du:
+            xbot.run_speed(50 + xbot.line_position()//2,
+                           50 - xbot.line_position()//2)
+    '''
+    def line_position(self):
+        return self.line_sensor.position_percent()
+
+    '''
+        True khi khong mat nao thay vach den nua (het line).
+    '''
+    def line_lost(self):
+        self.line_sensor.update()
+        return self.line_sensor.lost()
+
+    '''
+        True khi gap vach ngang cat qua duong di.
+    '''
+    def line_cross(self):
+        self.line_sensor.update()
+        return self.line_sensor.cross()
+
+    '''
         Vi tri cua robot so voi vach line, tra ve mot trong cac hang so
         LINE_LEFT3, LINE_LEFT2, LINE_LEFT, LINE_CENTER,
         LINE_RIGHT, LINE_RIGHT2, LINE_RIGHT3, LINE_CROSS, LINE_END.
     '''
     def line_state(self):
         return self.line_sensor.check()
+
+    '''
+        Hieu chinh cam bien line 5 mat: dat robot len sa ban roi goi ham nay,
+        sau do cho robot quay qua lai tren vach den vai giay de cam bien hoc
+        muc sang cua nen va cua vach. Ban 4 mat khong can hieu chinh.
+    '''
+    def line_calibrate(self):
+        if hasattr(self.line_sensor, 'calibrate'):
+            self.line_sensor.calibrate()
+
+    '''
+        Bat tat den LED trang tren cam bien line 5 mat.
+    '''
+    def line_white_led(self, on=True):
+        if hasattr(self.line_sensor, 'set_white_led'):
+            self.line_sensor.set_white_led(on)
 
     async def follow_line(self, backward=True):
         if self.drive:

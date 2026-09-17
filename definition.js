@@ -431,6 +431,79 @@ Blockly.Python['xbot_v3_line_read_all'] = function (block) {
   return [code, Blockly.Python.ORDER_NONE];
 };
 
+
+Blockly.Blocks['xbot_v3_line5_read_all'] = {
+  init: function () {
+    this.jsonInit({
+      "type": "xbot_v3_line5_read_all",
+      "message0": Blockly.Msg.XBOT_V3_LINE5_READ_ALL_MESSAGE0,
+      "args0": [
+        {
+          "type": "field_image",
+          "src": xbotV3ImgUrl + 'line.svg',
+          "width": 15,
+          "height": 15,
+          "alt": "*",
+          "flipRtl": false
+        },
+        {
+          "type": "field_dropdown",
+          "name": "S1",
+          "options": [
+            [{ "src": xbotV3ImgUrl + 'line_finder_none_detect.png', "width": 15, "height": 15, "alt": "none" }, "0"],
+            [{ "src": xbotV3ImgUrl + 'line_finder_detect.png', "width": 15, "height": 15, "alt": "detect" }, "1"]
+          ]
+        },
+        {
+          "type": "field_dropdown",
+          "name": "S2",
+          "options": [
+            [{ "src": xbotV3ImgUrl + 'line_finder_none_detect.png', "width": 15, "height": 15, "alt": "none" }, "0"],
+            [{ "src": xbotV3ImgUrl + 'line_finder_detect.png', "width": 15, "height": 15, "alt": "detect" }, "1"]
+          ]
+        },
+        {
+          "type": "field_dropdown",
+          "name": "S3",
+          "options": [
+            [{ "src": xbotV3ImgUrl + 'line_finder_none_detect.png', "width": 15, "height": 15, "alt": "none" }, "0"],
+            [{ "src": xbotV3ImgUrl + 'line_finder_detect.png', "width": 15, "height": 15, "alt": "detect" }, "1"]
+          ]
+        },
+        {
+          "type": "field_dropdown",
+          "name": "S4",
+          "options": [
+            [{ "src": xbotV3ImgUrl + 'line_finder_none_detect.png', "width": 15, "height": 15, "alt": "none" }, "0"],
+            [{ "src": xbotV3ImgUrl + 'line_finder_detect.png', "width": 15, "height": 15, "alt": "detect" }, "1"]
+          ]
+        },
+        {
+          "type": "field_dropdown",
+          "name": "S5",
+          "options": [
+            [{ "src": xbotV3ImgUrl + 'line_finder_none_detect.png', "width": 15, "height": 15, "alt": "none" }, "0"],
+            [{ "src": xbotV3ImgUrl + 'line_finder_detect.png', "width": 15, "height": 15, "alt": "detect" }, "1"]
+          ]
+        }
+      ],
+      "inputsInline": true,
+      "colour": xbotV3Color,
+      "output": "Boolean",
+      "tooltip": Blockly.Msg.XBOT_V3_LINE5_READ_ALL_TOOLTIP,
+      "helpUrl": ""
+    });
+  }
+};
+
+Blockly.Python['xbot_v3_line5_read_all'] = function (block) {
+  Blockly.Python.definitions_['import_xbot_v3'] = 'from xbot_v3 import *';
+  var code = 'xbot.read_line_sensors() == (' + block.getFieldValue('S1') + ', ' +
+    block.getFieldValue('S2') + ', ' + block.getFieldValue('S3') + ', ' +
+    block.getFieldValue('S4') + ', ' + block.getFieldValue('S5') + ')';
+  return [code, Blockly.Python.ORDER_NONE];
+};
+
 Blockly.Blocks['xbot_v3_line_read_single'] = {
   init: function () {
     this.jsonInit({
@@ -452,7 +525,8 @@ Blockly.Blocks['xbot_v3_line_read_single'] = {
             ["S1", "1"],
             ["S2", "2"],
             ["S3", "3"],
-            ["S4", "4"]
+            ["S4", "4"],
+            ["S5", "5"]
           ]
         }
       ],
@@ -468,6 +542,35 @@ Blockly.Blocks['xbot_v3_line_read_single'] = {
 Blockly.Python['xbot_v3_line_read_single'] = function (block) {
   Blockly.Python.definitions_['import_xbot_v3'] = 'from xbot_v3 import *';
   return ['xbot.read_line_sensors(' + block.getFieldValue('sensor') + ')', Blockly.Python.ORDER_NONE];
+};
+
+Blockly.Blocks['xbot_v3_line_position'] = {
+  init: function () {
+    this.jsonInit({
+      "type": "xbot_v3_line_position",
+      "message0": Blockly.Msg.XBOT_V3_LINE_POSITION_MESSAGE0,
+      "args0": [
+        {
+          "type": "field_image",
+          "src": xbotV3ImgUrl + 'line.svg',
+          "width": 15,
+          "height": 15,
+          "alt": "*",
+          "flipRtl": false
+        }
+      ],
+      "inputsInline": true,
+      "colour": xbotV3Color,
+      "output": "Number",
+      "tooltip": Blockly.Msg.XBOT_V3_LINE_POSITION_TOOLTIP,
+      "helpUrl": ""
+    });
+  }
+};
+
+Blockly.Python['xbot_v3_line_position'] = function (block) {
+  Blockly.Python.definitions_['import_xbot_v3'] = 'from xbot_v3 import *';
+  return ['xbot.line_position()', Blockly.Python.ORDER_NONE];
 };
 
 Blockly.Blocks['xbot_v3_ultrasonic_read'] = {

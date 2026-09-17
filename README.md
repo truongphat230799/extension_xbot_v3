@@ -19,12 +19,17 @@ Cài mục mở rộng xong là robot **chơi được ngay**, chưa cần lập
 | Động cơ bánh phải | `M2` |
 | Servo 1, Servo 2 | `S1`, `S2` |
 | Cảm biến dò line 4 mắt (PCF8574) | I2C, địa chỉ `0x23` |
+| Cảm biến dò line 5 mắt (STM32G030) | I2C, địa chỉ `0x24` |
 | Cảm biến siêu âm HC-SR04 | `D3` (trig), `D4` (echo) |
 | Cảm biến góc MPU6050 | tích hợp sẵn trên Control Hub |
 | Đèn RGB | đèn có sẵn trên Control Hub (`neopix`) |
 
 Tất cả nằm ở đầu file [xbot_v3.py](xbot_v3.py) trong các hằng số `XBOT_*`, cắm khác cổng thì
 sửa một chỗ là xong.
+
+Cảm biến dò line thì không cần khai báo: lúc khởi động thư viện quét I2C, thấy `0x24` thì
+dùng bản 5 mắt, không thấy thì dùng bản 4 mắt ở `0x23`. Các lệnh dò line dùng chung cho cả
+hai loại. Muốn ép một loại thì đặt `XBOT_LINE_ADDRESS = 0x23` (hoặc `0x24`).
 
 ### Lưu ý: dùng động cơ thường nên không có encoder
 
@@ -128,9 +133,14 @@ run_loop(main())
 **Servo** — `await servo_angle(index, angle, speed)`, `await servo_steps(index, steps)`,
 `servo_spin(index, speed)`, `servo_limit(index, min, max)`
 
-**Dò line** — `read_line_sensors(index=None)`, `line_state()`, `await follow_line()`,
-`await follow_line_until_cross(then)`, `await follow_line_until_end(then)`,
-`await follow_line_by_time(giây, then)`, `await turn_until_line_detected(steering, then)`
+**Dò line** — `read_line_sensors(index=None)`, `line_sensor_count()`, `line_state()`,
+`line_position()` (độ lệch vạch −100…100), `line_lost()`, `line_cross()`,
+`await follow_line()`, `await follow_line_until_cross(then)`,
+`await follow_line_until_end(then)`, `await follow_line_by_time(giây, then)`,
+`await turn_until_line_detected(steering, then)`
+
+Riêng bản 5 mắt có thêm `line_calibrate()` (chạy hiệu chỉnh trên mạch cảm biến) và
+`line_white_led(on)` (bật tắt đèn LED trắng trên cảm biến).
 
 **Siêu âm** — `distance_cm()` (trả về `999` khi không đo được), `obstacle_detected(distance)`
 
@@ -172,7 +182,7 @@ Hai điểm cần giữ khi sửa `definition.js`:
 | `images/` | Icon dùng trong khối lệnh |
 
 Các file còn lại (`drivebase.py`, `motor.py`, `mdv1.py`, `mdv2.py`, `servo.py`, `line_sensor.py`,
-`angle_sensor.py`, `mpu6050.py`, `pid.py`, `pcf8574.py`, `vector3d.py`, `gamepad.py`,
+`veml6040.py`, `angle_sensor.py`, `mpu6050.py`, `pid.py`, `pcf8574.py`, `vector3d.py`, `gamepad.py`,
 `ps4_receiver.py`, `constants.py`) được đồng bộ từ
 [yolouno_extension_robotics](https://github.com/AITT-VN/yolouno_extension_robotics)
 để mục mở rộng chạy độc lập, không cần cài thêm thư viện khác.

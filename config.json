@@ -8,6 +8,7 @@
         "pid.py",
         "mpu6050.py",
         "angle_sensor.py",
+        "veml6040.py",
         "line_sensor.py",
         "mdv1.py",
         "mdv2.py",
